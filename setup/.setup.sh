@@ -1,6 +1,7 @@
 #!/bin/sh
 
 export PACKAGE_LIST=(
+    zsh  # shell interpreter
     stow # dotfiles management
     git  # version control
 )
