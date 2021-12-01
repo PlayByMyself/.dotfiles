@@ -1,1 +1,1 @@
-eval $(sheldon source)
+eval "$(sheldon source)"

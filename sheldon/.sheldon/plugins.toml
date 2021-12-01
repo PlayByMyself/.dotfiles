@@ -20,18 +20,20 @@ github = 'zsh-users/zsh-syntax-highlighting'
 [plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'
 
+[plugins.ohmyzsh-config]
+inline = '''
+export ZSH=$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh
+ZSH_CACHE_DIR=$ZSH/cache
+ZSH_THEME=ys
+plugins=(
+    git
+    pip
+    command-not-found
+    rustup
+    cargo
+)
+'''
+
 [plugins.ohmyzsh]
 github = 'ohmyzsh/ohmyzsh'
-use = [
-    'git.plugin.zsh',
-    'command-not-found.plugin.zsh',
-    'pip.plugin.zsh',
-    'rustup.plugin.zsh',
-    'cargo.plugin.zsh',
-    'ys.zsh-theme'
-]
-
-# For example:
-#
-# [plugins.base16]
-# github = "chriskempson/base16-shell"
+use = ['oh-my-zsh.sh']
