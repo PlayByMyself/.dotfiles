@@ -4,8 +4,8 @@ args=$1
 if [[ "$args" == "up" ]]
 then
     echo $args
-    export https_proxy="http://${PROXY_IP}:1081"
-    export http_proxy="http://${PROXY_IP}:1081"
+    export https_proxy="http://127.0.0.1:1081"
+    export http_proxy="http://127.0.0.1:1081"
 elif [[ "$args" == "down" ]]
 then
     echo $args

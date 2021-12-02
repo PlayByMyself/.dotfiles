@@ -1,5 +1,4 @@
 # proxy
-export PROXY_IP=127.0.0.1
 alias proxy="source ~/.proxy.sh"
 
 # cargo
