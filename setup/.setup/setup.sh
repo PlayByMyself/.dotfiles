@@ -40,7 +40,7 @@ init_package_manager() {
     elif type -p pacman >/dev/null; then
         MANAGER_COMMAND="pacman"
         MANAGER_INSTALL="-S"
-        MANAGER_UPDATE="-Syy"
+        MANAGER_UPDATE="-Syu"
         MANAGER_PACKAGE_LIST=()
     # Openwrt
     elif type -p opkg >/dev/null; then
@@ -55,24 +55,15 @@ init_package_manager() {
     fi
 }
 
-package_manager_install() {
-    local PACKAGE_NAME=$1
-    if type -p $PACKAGE_NAME >/dev/null; then
-        echo "$PACKAGE_NAME is already installed"
-        return
-    else
-        echo "Installing package $PACKAGE_NAME"
-        $MANAGER_COMMAND $MANAGER_INSTALL $PACKAGE_NAME
-    fi
-}
-
 init_package_manager
-if [ "$1" = "update" ]; then
+if [ "$1" = "dev" ]; then
     $MANAGER_COMMAND $MANAGER_UPDATE
-elif [ "$1" = "install" ]; then
-    $MANAGER_COMMAND $MANAGER_INSTALL $BASE_PACKAGE_LIST $DEVELOP_PACKAGE_LIST $MANAGER_PACKAGE_LIST
-elif [ "$1" = "install-server" ]; then
-    $MANAGER_COMMAND $MANAGER_INSTALL $BASE_PACKAGE_LIST $SERVER_PACKAGE_LIST $MANAGER_PACKAGE_LIST
+    $MANAGER_COMMAND $MANAGER_INSTALL \
+        ${BASE_PACKAGE_LIST[@]} ${DEVELOP_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]}
+elif [ "$1" = "server" ]; then
+    $MANAGER_COMMAND $MANAGER_UPDATE
+    $MANAGER_COMMAND $MANAGER_INSTALL \
+        ${BASE_PACKAGE_LIST[@]} ${SERVER_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]}
 else
-    echo "Usage: $0 [update|install|install-server]"
+    echo "Usage: $0 [dev|server]"
 fi

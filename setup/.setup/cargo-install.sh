@@ -20,12 +20,12 @@ rustup_init() {
     fi
 }
 
-if [[ $1 == "install" ]]; then
+if [[ $1 == "dev" ]]; then
    rustup_init
     cargo install ${BASE_RUST_PACAKGE_LIST[@]} ${DEVELOP_RUST_PACAKGE_LIST[@]}
-elif [[ $1 == "install-server" ]]; then
+elif [[ $1 == "server" ]]; then
     rustup_init
     cargo install ${BASE_RUST_PACAKGE_LIST[@]} ${SERVER_RUST_PACAKGE_LIST[@]}
 else
-    echo "Usage: $0 [install|install-server]"
+    echo "Usage: $0 [dev|server]"
 fi 

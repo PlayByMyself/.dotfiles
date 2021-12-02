@@ -21,10 +21,10 @@ pip_init() {
 
 pip_init
 
-if [[ $1 = "install" ]]; then
-    $PIP_COMMAND install --user $BASE_PYTHON_PACKAGE_LIST $DEVELOP_PYTHON_PACKAGE_LIST
-elif [[ $1 = "install-server" ]]; then
-    $PIP_COMMAND install --user $BASE_PYTHON_PACKAGE_LIST $SERVER_PYTHON_PACKAGE_LIST
+if [[ $1 = "dev" ]]; then
+    $PIP_COMMAND install --user ${BASE_PYTHON_PACKAGE_LIST[@]} ${DEVELOP_PYTHON_PACKAGE_LIST[@]}
+elif [[ $1 = "server" ]]; then
+    $PIP_COMMAND install --user ${BASE_PYTHON_PACKAGE_LIST[@]} ${SERVER_PYTHON_PACKAGE_LIST[@]}
 else
-    echo "Usage: $0 install|install-server"
+    echo "Usage: $0 [dev|server]"
 fi
