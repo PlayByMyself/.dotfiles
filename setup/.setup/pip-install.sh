@@ -1,6 +1,8 @@
 #!/bin/sh
 
-BASE_PYTHON_PACKAGE_LIST=()
+BASE_PYTHON_PACKAGE_LIST=(
+    tldr
+)
 
 DEVELOP_PYTHON_PACKAGE_LIST=(
     poetry
