@@ -5,12 +5,19 @@ BASE_PACKAGE_LIST=(
     stow
     git
     python3
+    wget
+    curl
 )
 
 DEVELOP_PACKAGE_LIST=()
 
 SERVER_PACKAGE_LIST=(
     fail2ban
+)
+
+EXTRA_INSTALLER_LIST=(
+    cargo-install.sh
+    pip-install.sh
 )
 
 init_package_manager() {
@@ -57,13 +64,19 @@ init_package_manager() {
 
 init_package_manager
 if [ "$1" = "dev" ]; then
-    $MANAGER_COMMAND $MANAGER_UPDATE
-    $MANAGER_COMMAND $MANAGER_INSTALL \
+    sudo $MANAGER_COMMAND $MANAGER_UPDATE
+    sudo $MANAGER_COMMAND $MANAGER_INSTALL \
         ${BASE_PACKAGE_LIST[@]} ${DEVELOP_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]}
+    for installer in ${EXTRA_INSTALLER_LIST[@]}; do
+        sh $(dirname $0)/installer/$installer dev
+    done
 elif [ "$1" = "server" ]; then
-    $MANAGER_COMMAND $MANAGER_UPDATE
-    $MANAGER_COMMAND $MANAGER_INSTALL \
+    sudo $MANAGER_COMMAND $MANAGER_UPDATE
+    sudo $MANAGER_COMMAND $MANAGER_INSTALL \
         ${BASE_PACKAGE_LIST[@]} ${SERVER_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]}
+    for installer in ${EXTRA_INSTALLER_LIST[@]}; do
+        sh $(dirname $0)/installer/$installer server
+    done
 else
     echo "Usage: $0 [dev|server]"
 fi
