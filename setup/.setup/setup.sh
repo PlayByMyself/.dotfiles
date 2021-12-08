@@ -7,6 +7,7 @@ BASE_PACKAGE_LIST=(
     python3
     wget
     curl
+    screen
 )
 
 DEVELOP_PACKAGE_LIST=()
