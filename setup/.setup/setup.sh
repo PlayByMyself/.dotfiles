@@ -76,9 +76,9 @@ init_sheldon() {
 init_package_manager
 init_sheldon
 PROFILE=$1
-if [ $PROFILE = "dev" ]; then
+if [[ $PROFILE = "dev" ]]; then
     ALL_PACKAGE_LIST=(${BASE_PACKAGE_LIST[@]} ${DEVELOP_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]})
-elif [ $PROFILE = "server" ]; then
+elif [[ $PROFILE = "server" ]]; then
     ALL_PACKAGE_LIST=(${BASE_PACKAGE_LIST[@]} ${SERVER_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]})
 else
     echo "Usage: $0 [dev|server]"
