@@ -63,7 +63,14 @@ init_package_manager() {
     fi
 }
 
+init_sheldon() {
+    if [[ ! -d ~/.sheldon ]]; then
+        mkdir ~/.sheldon
+    fi
+}
+
 init_package_manager
+init_sheldon
 if [ "$1" = "dev" ]; then
     sudo $MANAGER_COMMAND $MANAGER_UPDATE
     sudo $MANAGER_COMMAND $MANAGER_INSTALL \
