@@ -34,6 +34,7 @@ init_package_manager() {
         MANAGER_INSTALL="install -y"
         MANAGER_UPDATE="update"
         MANAGER_PACKAGE_LIST=(
+            build-essential
             libssl-dev
         )
     # CentOS
@@ -42,14 +43,17 @@ init_package_manager() {
         MANAGER_INSTALL="install -y"
         MANAGER_UPDATE="makecache"
         MANAGER_PACKAGE_LIST=(
+            gcc
             openssl-devel
         )
     # Arch
     elif type -p pacman >/dev/null; then
         MANAGER_COMMAND="pacman"
-        MANAGER_INSTALL="-S"
+        MANAGER_INSTALL="-S --noconfirm --needed"
         MANAGER_UPDATE="-Syu"
-        MANAGER_PACKAGE_LIST=()
+        MANAGER_PACKAGE_LIST=(
+            base-devel
+        )
     # Openwrt
     elif type -p opkg >/dev/null; then
         MANAGER_COMMAND="opkg"
@@ -71,20 +75,19 @@ init_sheldon() {
 
 init_package_manager
 init_sheldon
-if [ "$1" = "dev" ]; then
-    sudo $MANAGER_COMMAND $MANAGER_UPDATE
-    sudo $MANAGER_COMMAND $MANAGER_INSTALL \
-        ${BASE_PACKAGE_LIST[@]} ${DEVELOP_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]}
-    for installer in ${EXTRA_INSTALLER_LIST[@]}; do
-        sh $(dirname $0)/installer/$installer dev
-    done
-elif [ "$1" = "server" ]; then
-    sudo $MANAGER_COMMAND $MANAGER_UPDATE
-    sudo $MANAGER_COMMAND $MANAGER_INSTALL \
-        ${BASE_PACKAGE_LIST[@]} ${SERVER_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]}
-    for installer in ${EXTRA_INSTALLER_LIST[@]}; do
-        sh $(dirname $0)/installer/$installer server
-    done
+PROFILE=$1
+if [ $PROFILE = "dev" ]; then
+    ALL_PACKAGE_LIST=(${BASE_PACKAGE_LIST[@]} ${DEVELOP_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]})
+elif [ $PROFILE = "server" ]; then
+    ALL_PACKAGE_LIST=(${BASE_PACKAGE_LIST[@]} ${SERVER_PACKAGE_LIST[@]} ${MANAGER_PACKAGE_LIST[@]})
 else
     echo "Usage: $0 [dev|server]"
+    exit 1
 fi
+
+sudo $MANAGER_COMMAND $MANAGER_UPDATE
+echo "All package list: ${ALL_PACKAGE_LIST[@]}"
+sudo $MANAGER_COMMAND $MANAGER_INSTALL ${ALL_PACKAGE_LIST[@]}
+for installer in ${EXTRA_INSTALLER_LIST[@]}; do
+    sh $(dirname $0)/installer/$installer $PROFILE
+done
