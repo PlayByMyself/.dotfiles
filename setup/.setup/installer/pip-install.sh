@@ -17,7 +17,7 @@ pip_init() {
         PIP_COMMAND="pip3"
     else
         python3 -m ensurepip || curl https://bootstrap.pypa.io/get-pip.py | python3
-        PIP_COMMAND="pip3"
+        PIP_COMMAND="python3 -m pip"
     fi
 }
 
