@@ -17,15 +17,19 @@ rustup_init() {
         rustup update stable
     else
         curl https://sh.rustup.rs -sSf | sh -s -- -y
+        # First time install need remove .zshenv, it will be stowed after
+        if [[ -f ~/.zshenv ]]; then
+            rm ~/.zshenv
+        fi
     fi
 }
 
 if [[ $1 == "dev" ]]; then
-   rustup_init
+    rustup_init
     cargo install ${BASE_RUST_PACAKGE_LIST[@]} ${DEVELOP_RUST_PACAKGE_LIST[@]}
 elif [[ $1 == "server" ]]; then
     rustup_init
     cargo install ${BASE_RUST_PACAKGE_LIST[@]} ${SERVER_RUST_PACAKGE_LIST[@]}
 else
     echo "Usage: $0 [dev|server]"
-fi 
+fi
