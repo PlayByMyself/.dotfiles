@@ -81,6 +81,14 @@ stow_dotfiles() {
     cd - >/dev/null
 }
 
+exit_if_root() {
+    if [[ $EUID -eq 0 ]]; then
+        echo "This script should not be run as root"
+        exit 1
+    fi
+}
+
+exit_if_root
 init_package_manager
 init_sheldon
 PROFILE=$1
