@@ -53,7 +53,7 @@ init_package_manager() {
     elif type -p pacman >/dev/null; then
         MANAGER_COMMAND="pacman"
         MANAGER_INSTALL="-S --noconfirm --needed"
-        MANAGER_UPDATE="-Syu"
+        MANAGER_UPDATE="-Sy"
         MANAGER_PACKAGE_LIST=(
             base-devel
         )
