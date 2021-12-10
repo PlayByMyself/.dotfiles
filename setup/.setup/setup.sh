@@ -76,6 +76,11 @@ init_sheldon() {
     fi
 }
 
+stow_dotfiles() {
+    cd ~/.dotfiles && stow -S $(ls ~/.dotfiles)
+    cd - >/dev/null
+}
+
 init_package_manager
 init_sheldon
 PROFILE=$1
@@ -94,3 +99,4 @@ sudo $MANAGER_COMMAND $MANAGER_INSTALL ${ALL_PACKAGE_LIST[@]}
 for installer in ${EXTRA_INSTALLER_LIST[@]}; do
     sh $(dirname $0)/installer/$installer $PROFILE
 done
+stow_dotfiles
