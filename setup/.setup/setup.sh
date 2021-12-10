@@ -8,9 +8,9 @@ BASE_PACKAGE_LIST=(
     wget
     curl
     screen
-    vi
     vim
     sudo
+    tmux
 )
 
 DEVELOP_PACKAGE_LIST=()
