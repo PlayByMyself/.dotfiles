@@ -8,6 +8,9 @@ BASE_PACKAGE_LIST=(
     wget
     curl
     screen
+    vi
+    vim
+    sudo
 )
 
 DEVELOP_PACKAGE_LIST=()
