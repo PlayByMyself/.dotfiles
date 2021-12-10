@@ -24,8 +24,10 @@ pip_init() {
 pip_init
 
 if [[ $1 = "dev" ]]; then
+    $PIP_COMMAND install --upgrade pip
     $PIP_COMMAND install --user ${BASE_PYTHON_PACKAGE_LIST[@]} ${DEVELOP_PYTHON_PACKAGE_LIST[@]}
 elif [[ $1 = "server" ]]; then
+    $PIP_COMMAND install --upgrade pip
     $PIP_COMMAND install --user ${BASE_PYTHON_PACKAGE_LIST[@]} ${SERVER_PYTHON_PACKAGE_LIST[@]}
 else
     echo "Usage: $0 [dev|server]"
