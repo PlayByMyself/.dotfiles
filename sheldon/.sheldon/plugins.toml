@@ -25,6 +25,11 @@ inline = '''
 export ZSH=$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh
 ZSH_CACHE_DIR=$ZSH/cache
 ZSH_THEME=ys
+if_cmd() {
+    if type -p "$1" > /dev/null; then
+        return "$1"
+    fi
+}
 plugins=(
     git
     pip
@@ -32,6 +37,8 @@ plugins=(
     rustup
     cargo
     screen
+    docker
+    docker-compose
 )
 '''
 
