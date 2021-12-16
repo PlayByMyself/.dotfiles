@@ -41,7 +41,7 @@ init() {
 
 change_shell_to_zsh() {
     if [[ ! $SHELL =~ zsh ]]; then
-        chsh -s $(which zsh)
+        chsh -s /bin/zsh
         zsh
     fi
 }
