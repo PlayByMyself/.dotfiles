@@ -41,8 +41,7 @@ init() {
 
 change_shell_to_zsh() {
     if [[ ! $SHELL =~ zsh ]]; then
-        chsh -s /bin/zsh
-        zsh
+        sudo chsh -s /bin/zsh $USER
     fi
 }
 
