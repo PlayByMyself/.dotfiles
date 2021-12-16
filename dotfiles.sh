@@ -1,0 +1,52 @@
+#!/bin/sh
+
+GIT_URL="git@github.com:PlayByMyself/.dotfiles.git"
+HTTP_URL="https://github.com/PlayByMyself/.dotfiles.git"
+
+github_auth() {
+    ssh -T github.com
+    local result=$?
+    if [[ result -eq 255 ]]; then
+        return 1
+    fi
+    return 0
+}
+
+exist() {
+    if [[ ! -d ~/.dotfiles ]]; then
+        return 1
+    fi
+    cd ~/.dotfiles
+    local url=$(git config --get remote.origin.url)
+    if [[ $url != $GIT_URL && $url != $HTTP_URL ]]; then
+        return 1
+    fi
+    cd - >/dev/null
+    return 0
+}
+
+update() {
+    cd ~/.dotfiles
+    git pull
+    cd - >/dev/null
+}
+
+init() {
+    if github_auth; then
+        git clone $GIT_URL ~/.dotfiles
+    else
+        git clone $HTTP_URL ~/.dotfiles
+    fi
+}
+
+if exist; then
+    update
+else
+    init
+fi
+
+if [[ $1 == "dev" || $1 == "server" ]]; then
+    sh ~/.dotfiles/setup/.setup/setup.sh $1
+else
+    echo "Usage: $0 [dev|server]"
+fi
