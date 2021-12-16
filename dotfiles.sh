@@ -39,6 +39,13 @@ init() {
     fi
 }
 
+change_shell_to_zsh() {
+    if [[ ! $SHELL =~ zsh ]]; then
+        chsh -s $(which zsh)
+        zsh
+    fi
+}
+
 if exist; then
     update
 else
@@ -47,6 +54,7 @@ fi
 
 if [[ $1 == "dev" || $1 == "server" ]]; then
     sh ~/.dotfiles/setup/.setup/setup.sh $1
+    change_shell_to_zsh
 else
     echo "Usage: $0 [dev|server]"
 fi
