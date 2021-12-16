@@ -77,7 +77,7 @@ init_sheldon() {
 }
 
 stow_dotfiles() {
-    cd ~/.dotfiles && stow -S $(ls ~/.dotfiles)
+    cd ~/.dotfiles && ls -d1 */ | xargs stow -S
     cd - >/dev/null
 }
 
