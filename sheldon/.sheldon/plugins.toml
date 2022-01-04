@@ -34,7 +34,7 @@ plugins=(
     git
     pip
     command-not-found
-    rustup
+    rust
     cargo
     screen
     docker
