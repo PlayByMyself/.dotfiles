@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 BASE_PACKAGE_LIST=(
     zsh

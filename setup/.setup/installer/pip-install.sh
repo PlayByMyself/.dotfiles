@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 BASE_PYTHON_PACKAGE_LIST=(
     tldr

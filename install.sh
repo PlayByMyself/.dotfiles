@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 GIT_URL="git@github.com:PlayByMyself/.dotfiles.git"
 HTTP_URL="https://github.com/PlayByMyself/.dotfiles.git"

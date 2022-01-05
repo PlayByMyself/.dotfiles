@@ -1,5 +1,5 @@
 add_path() {
-  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="$1:$PATH"
     return 0
   else
