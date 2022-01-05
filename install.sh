@@ -52,7 +52,7 @@ else
 fi
 
 if [[ $1 == "dev" || $1 == "server" ]]; then
-    sh ~/.dotfiles/setup/.setup/setup.sh $1
+    bash ~/.dotfiles/setup/.setup/setup.sh $1
     change_shell_to_zsh
 else
     echo "Usage: $0 [dev|server]"
