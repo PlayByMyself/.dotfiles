@@ -27,7 +27,7 @@ exist() {
 
 update() {
     cd ~/.dotfiles
-    git pull
+    git fetch origin && git reset --hard origin/master
     cd - >/dev/null
 }
 
