@@ -105,6 +105,6 @@ sudo $MANAGER_COMMAND $MANAGER_UPDATE
 echo "All package list: ${ALL_PACKAGE_LIST[@]}"
 sudo $MANAGER_COMMAND $MANAGER_INSTALL ${ALL_PACKAGE_LIST[@]}
 for installer in ${EXTRA_INSTALLER_LIST[@]}; do
-    sh $(dirname $0)/installer/$installer $PROFILE
+    bash $(dirname $0)/installer/$installer $PROFILE
 done
 stow_dotfiles
