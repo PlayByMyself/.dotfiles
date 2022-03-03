@@ -1,11 +1,6 @@
-[user]
-	email = yejun.code@gmail.com
-	name = Ye Jun
-	signingkey = C62BC66D9AFC85DB
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[commit]
-	gpgsign = true
+[includeIf "gitdir:~/.dotfiles/.git"]
+	path = .gitconfig-github
+[includeIf "gitdir:~/github"]
+	path = .gitconfig-github
+[includeIf "gitdir:~/company"]
+	path = .gitconfig-company
