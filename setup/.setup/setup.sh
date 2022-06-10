@@ -11,6 +11,7 @@ BASE_PACKAGE_LIST=(
     vim
     sudo
     tmux
+    gpg
 )
 
 DEVELOP_PACKAGE_LIST=()
@@ -27,13 +28,13 @@ EXTRA_INSTALLER_LIST=(
 init_package_manager() {
     # FreeBSD
     if type -p pkg >/dev/null; then
-        MANAGER_COMMAND="pkg"
+        MANAGER_COMMAND="sudo pkg"
         MANAGER_INSTALL="install -y"
         MANAGER_UPDATE="update"
         MANAGER_PACKAGE_LIST=()
     # Ubuntu
     elif type -p apt-get >/dev/null; then
-        MANAGER_COMMAND="apt-get"
+        MANAGER_COMMAND="sudo apt-get"
         MANAGER_INSTALL="install -y"
         MANAGER_UPDATE="update"
         MANAGER_PACKAGE_LIST=(
@@ -42,7 +43,7 @@ init_package_manager() {
         )
     # CentOS
     elif type -p yum >/dev/null; then
-        MANAGER_COMMAND="yum"
+        MANAGER_COMMAND="sudo yum"
         MANAGER_INSTALL="install -y"
         MANAGER_UPDATE="makecache"
         MANAGER_PACKAGE_LIST=(
@@ -51,7 +52,7 @@ init_package_manager() {
         )
     # Arch
     elif type -p pacman >/dev/null; then
-        MANAGER_COMMAND="pacman"
+        MANAGER_COMMAND="sudo pacman"
         MANAGER_INSTALL="-S --noconfirm --needed"
         MANAGER_UPDATE="-Sy"
         MANAGER_PACKAGE_LIST=(
@@ -59,7 +60,13 @@ init_package_manager() {
         )
     # Openwrt
     elif type -p opkg >/dev/null; then
-        MANAGER_COMMAND="opkg"
+        MANAGER_COMMAND="sudo opkg"
+        MANAGER_INSTALL="install"
+        MANAGER_UPDATE="update"
+        MANAGER_PACKAGE_LIST=()
+    # MacOS
+    elif type -p brew >/dev/null; then
+        MANAGER_COMMAND="brew"
         MANAGER_INSTALL="install"
         MANAGER_UPDATE="update"
         MANAGER_PACKAGE_LIST=()
@@ -101,9 +108,9 @@ else
     exit 1
 fi
 
-sudo $MANAGER_COMMAND $MANAGER_UPDATE
+$MANAGER_COMMAND $MANAGER_UPDATE
 echo "All package list: ${ALL_PACKAGE_LIST[@]}"
-sudo $MANAGER_COMMAND $MANAGER_INSTALL ${ALL_PACKAGE_LIST[@]}
+$MANAGER_COMMAND $MANAGER_INSTALL ${ALL_PACKAGE_LIST[@]}
 for installer in ${EXTRA_INSTALLER_LIST[@]}; do
     bash $(dirname $0)/installer/$installer $PROFILE
 done

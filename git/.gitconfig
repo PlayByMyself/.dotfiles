@@ -1,6 +1,6 @@
 [includeIf "gitdir:~/.dotfiles/.git"]
 	path = .gitconfig-github
-[includeIf "gitdir:~/github"]
+[includeIf "gitdir:~/github/"]
 	path = .gitconfig-github
-[includeIf "gitdir:~/company"]
+[includeIf "gitdir:~/company/"]
 	path = .gitconfig-company
