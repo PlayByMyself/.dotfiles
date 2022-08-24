@@ -67,7 +67,7 @@ init_package_manager() {
     # MacOS
     elif type -p brew >/dev/null; then
         MANAGER_COMMAND="brew"
-        MANAGER_INSTALL="install"
+        MANAGER_INSTALL="install --force"
         MANAGER_UPDATE="update"
         MANAGER_PACKAGE_LIST=()
     # Rest
