@@ -1,10 +1,13 @@
 add_path() {
-  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-    export PATH="$1:$PATH"
-    return 0
-  else
-    return 1
-  fi
+  local result=0;
+  for NEW_PATH in $@; do
+    if [[ -d "$NEW_PATH" ]] && [[ ":$PATH:" != *":$NEW_PATH:"* ]]; then
+      export PATH="$NEW_PATH:$PATH"
+    else
+      result=1
+    fi
+  done
+  return result
 }
 
 # source all .zshenv files in .zshenv.d directory
