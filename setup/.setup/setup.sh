@@ -9,7 +9,6 @@ BASE_PACKAGE_LIST=(
     curl
     screen
     vim
-    sudo
     tmux
     gpg
 )
@@ -31,7 +30,9 @@ init_package_manager() {
         MANAGER_COMMAND="sudo pkg"
         MANAGER_INSTALL="install -y"
         MANAGER_UPDATE="update"
-        MANAGER_PACKAGE_LIST=()
+        MANAGER_PACKAGE_LIST=(
+            sudo
+        )
     # Ubuntu
     elif type -p apt-get >/dev/null; then
         MANAGER_COMMAND="sudo apt-get"
@@ -40,6 +41,7 @@ init_package_manager() {
         MANAGER_PACKAGE_LIST=(
             build-essential
             libssl-dev
+            sudo
         )
     # CentOS
     elif type -p yum >/dev/null; then
@@ -49,6 +51,7 @@ init_package_manager() {
         MANAGER_PACKAGE_LIST=(
             gcc
             openssl-devel
+            sudo
         )
     # Arch
     elif type -p pacman >/dev/null; then
@@ -57,17 +60,20 @@ init_package_manager() {
         MANAGER_UPDATE="-Sy"
         MANAGER_PACKAGE_LIST=(
             base-devel
+            sudo
         )
     # Openwrt
     elif type -p opkg >/dev/null; then
         MANAGER_COMMAND="sudo opkg"
         MANAGER_INSTALL="install"
         MANAGER_UPDATE="update"
-        MANAGER_PACKAGE_LIST=()
+        MANAGER_PACKAGE_LIST=(
+            sudo
+        )
     # MacOS
     elif type -p brew >/dev/null; then
         MANAGER_COMMAND="brew"
-        MANAGER_INSTALL="install --force"
+        MANAGER_INSTALL="install"
         MANAGER_UPDATE="update"
         MANAGER_PACKAGE_LIST=()
     # Rest
