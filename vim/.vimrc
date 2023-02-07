@@ -13,6 +13,7 @@ set softtabstop=2
 set number
 set relativenumber
 set cursorline
+set scrolloff=5
 set laststatus=2
 set ruler
 set showmatch
