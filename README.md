@@ -1,6 +1,6 @@
 # Usage
 
-Install for develope machine:
+Install for dev machine:
 
 ```shell
 curl -sSf https://dotfiles.yejun.me/install.sh | bash -s -- dev
