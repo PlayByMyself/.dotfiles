@@ -6,6 +6,8 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tomasiser/vim-code-dark'
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
