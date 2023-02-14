@@ -4,6 +4,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 
@@ -50,3 +52,5 @@ set wildmode=longest:list,full
 
 filetype indent on
 syntax on
+
+colorscheme codedark
