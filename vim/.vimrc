@@ -56,7 +56,7 @@ augroup END
 
 augroup autosave
     autocmd!
-    autocmd CursorHold,CursorHoldI * update
+    autocmd CursorHold,CursorHoldI,InsertLeave * update
 augroup END
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
