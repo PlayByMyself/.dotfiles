@@ -59,6 +59,11 @@ augroup autosave
     autocmd CursorHold,CursorHoldI,InsertLeave * update
 augroup END
 
+augroup remove_tail_space
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
