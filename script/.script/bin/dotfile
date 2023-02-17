@@ -1,0 +1,15 @@
+#!/bin/bash
+
+usage="Usage: ${0##*/} [update|stow]"
+case "$1" in
+    update)
+        cd ~/.dotfiles && git pull
+        ;;
+    stow)
+        cd ~/.dotfiles && ls -d1 */ | xargs stow -S
+        ;;
+    *)
+        echo $usage && exit 1
+        ;;
+esac
+cd - >/dev/null
