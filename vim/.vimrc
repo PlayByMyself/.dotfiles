@@ -1,5 +1,7 @@
 call plug#begin()
 
+let g:plug_url_format = 'git@github.com:%s.git'
+
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
