@@ -1,41 +1,21 @@
 #!/bin/bash
 
-usage="Usage: ${0##*/} [up|down]"
-
-http_proxy="http://127.0.0.1:1081"
-https_proxy="http://127.0.0.1:1081"
-
-check_connection() {
-    if ! ping -c 1 www.baidu.com > /dev/null 2>&1; then
-        echo "Error: Network is not connected."
-        exit 1
-    fi
-}
+readonly proxy_url_list=(http://127.0.0.1:1081 http://127.0.0.1:7890)
 
 set_proxy() {
-    echo "Setting proxy to $http_proxy"
-    export http_proxy="$http_proxy"
-    export https_proxy="$https_proxy"
+    for proxy_url in "${proxy_url_list[@]}"
+    do
+        result=$(curl -s -f -m 1 -w %{http_code} -x $proxy_url -L -o /dev/null google.com)
+        if [[ $result -ge 200 && $result -lt 300 ]]; then
+            echo "Setting proxy to $proxy_url"
+            export http_proxy="$proxy_url"
+            export https_proxy="$proxy_url"
+            break
+        fi
+    done
 }
 
-unset_proxy() {
-    echo "Unsetting proxy"
-    unset http_proxy
-    unset https_proxy
-}
-
-case "$1" in
-    up)
-        check_connection
-        set_proxy
-        ;;
-    down)
-        unset_proxy
-        ;;
-    *)
-        echo "$usage"
-        exit 1
-        ;;
-esac
+set_proxy
+exec "$@"
 
 exit 0
