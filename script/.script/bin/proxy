@@ -15,7 +15,14 @@ set_proxy() {
     done
 }
 
-set_proxy
-exec "$@"
+if [[ $# -gt 0 ]]; then
+    command="$1"
+    shift
+    set_proxy
+    exec "$command" "$@"
+else
+    echo "No command specified"
+    exit 1
+fi
 
 exit 0
