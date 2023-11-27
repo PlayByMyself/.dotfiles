@@ -30,7 +30,7 @@ copy_git_diff() {
     local output=$git_diff
 
     if [[ "$message_lang" == "cn" ]]; then
-      output+="\n\n根据以上git diff信息,生成的git commit message 如下:\n\n"
+      output+="\n\n根据以上git diff信息,生成的中文git commit message 如下:\n\n"
     elif [[ "$message_lang" == "en" ]]; then
       output+="\n\nBased on the above git diff, the generated git commit message is as follows:\n\n"
     fi
