@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Default message language
+lang="en"
+
+# Parse command line arguments
+while getopts "m:" opt; do
+  case ${opt} in
+    m) # generate prompt for llm to genrate specified language git commit message based on git diff
+      lang=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+handle_error() {
+  local error_message="$1"
+  echo "$error_message"
+  exit 1
+}
+
+
+copy_to_clipboard() {
+  local data=$1
+  case "$OSTYPE" in
+    "darwin"*) echo "$data" | pbcopy ;;
+    "linux-gnu"*) echo "$data" | xclip -selection clipboard ;;
+    "cygwin"|"msys"|"win32") echo "$data" | clip ;;
+    *) echo "Unknown OS type" ;;
+  esac
+}
+
+generate_prompt() {
+  local git_diff=$1
+  local lang=$2
+  local git_diff_output=""
+  local prompt="""
+        Please help me automatically generate a git commit message with the following requirements:
+
+            Based on the git diff content I provide
+            Write in $lang
+            No extra text, No extra describe before content, just the commit message content can directly be used as the commit message
+        Git diff:
+            $git_diff
+
+        Here is a generated git commit message based on the diff:
+        """
+  echo "$prompt"
+}
+
+git_diff=$(git diff --cached) || handle_error "Failed to execute git diff --cached"
+
+case "$lang" in
+  "cn") git_diff_output=$(generate_prompt "$git_diff" Chinese) ;;
+  "en") git_diff_output=$(generate_prompt "$git_diff" English) ;;
+  *) git_diff_output="$git_diff" ;;
+esac
+
+copy_to_clipboard "$git_diff_output"
