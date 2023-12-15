@@ -4,3 +4,5 @@
 	path = .gitconfig-github
 [includeIf "gitdir:~/company/"]
 	path = .gitconfig-company
+[core]
+	editor = vim
