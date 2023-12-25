@@ -22,7 +22,15 @@ github = 'zsh-users/zsh-autosuggestions'
 
 [plugins.zsh-vi-mode]
 github = 'jeffreytse/zsh-vi-mode'
-use = ['*.zsh']
+use = ['*.plugin.zsh']
+
+[plugins.fast-syntax-highlighting]
+github = 'zdharma-continuum/fast-syntax-highlighting'
+use = ['*.plugin.zsh']
+
+[plugins.zsh-autocomplete]
+github = 'marlonrichert/zsh-autocomplete'
+use = ['*.plugin.zsh']
 
 [plugins.ohmyzsh-config]
 inline = '''
