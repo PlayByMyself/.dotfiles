@@ -8,7 +8,7 @@ update_dotfiles() {
 }
 
 stow_dotfiles() {
-    cd ~/.dotfiles && ls -d1 */ | xargs stow -S
+    cd ~/.dotfiles && ls -d1 */ | xargs stow --ignore=".DS_Store" -S
     cd - >/dev/null
 }
 
