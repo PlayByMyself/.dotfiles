@@ -37,6 +37,7 @@ inline = '''
 export ZSH=$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh
 ZSH_CACHE_DIR=$ZSH/cache
 ZSH_THEME=ys
+fpath=($fpath $(brew --prefix)/share/zsh/site-functions)
 if_cmd() {
     if type -p "$1" > /dev/null; then
         return "$1"
@@ -52,6 +53,7 @@ plugins=(
     docker-compose
     pyenv
     z
+    brew
 )
 '''
 
