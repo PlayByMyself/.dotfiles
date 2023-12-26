@@ -10,6 +10,18 @@ add_path() {
   return result
 }
 
+add_fpath() {
+  local result=0;
+  for NEW_FPATH in $@; do
+    if [[ -d "$NEW_FPATH" ]] && [[ ":$FPATH:" != *":$NEW_FPATH:"* ]]; then
+      export FPATH="$NEW_FPATH:$FPATH"
+    else
+      result=1
+    fi
+  done
+  return result
+}
+
 # source all .zshenv files in .zshenv.d directory
 setopt null_glob
 ZSH_ENV_DIR="$HOME/.zshenv.d"
