@@ -44,15 +44,23 @@ generate_prompt() {
   local lang=$2
   local git_diff_output=""
   local prompt="""
-        Please help me automatically generate a git commit message with the following requirements:
-
-            Based on the git diff content I provide
-            Write in $lang
-            No extra text, No extra describe before content, just the commit message content can directly be used as the commit message
-        Git diff:
-            $git_diff
-
-        Here is a generated git commit message based on the diff:
+          Please generate a git commit message with the following requirements:
+          
+          - Based on the git diff content provided below.
+          - Written in $lang.
+          - The first line should be a brief summary of the changes, ideally no more than 50 characters long.
+          - If the change is complex and requires more context, add a more detailed description after the first line. Leave a blank line after the summary, then write the rest of the message.
+          - Write the commit message in the imperative mood, as if giving a command or instruction. For example, use \"Add feature\" instead of \"Added feature\" or \"Adds feature\".
+          - If the commit is related to a specific issue or ticket in the project's bug tracker, include a reference to it in the commit message.
+          - The commit message should describe what changed and why, without including details about how the changes were implemented.
+          - Ensure the description is complete enough to help any reviewer understand the problem and the solution.
+          - Avoid abbreviations and use clear and understandable language.
+          - The commit message content should not contain any extra text or descriptions before the content.
+          
+          Git diff:
+          $git_diff
+          
+          Please generate a git commit message based on the diff.
         """
   echo "$prompt"
 }
