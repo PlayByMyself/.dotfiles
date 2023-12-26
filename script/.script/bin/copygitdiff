@@ -55,7 +55,7 @@ generate_prompt() {
           - The commit message should describe what changed and why, without including details about how the changes were implemented.
           - Ensure the description is complete enough to help any reviewer understand the problem and the solution.
           - Avoid abbreviations and use clear and understandable language.
-          - Avoid use personal pronouns like I, me, we, us, etc.
+          - Avoid use personal pronouns like I, me, we, us, 我, 我们 etc.
           - The commit message content should not contain any extra text or descriptions before the content.
           
           Git diff:
