@@ -52,6 +52,7 @@ plugins=(
     pyenv
     z
     brew
+    poetry
 )
 '''
 
