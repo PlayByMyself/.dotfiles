@@ -38,7 +38,7 @@ export ZSH=$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh
 ZSH_CACHE_DIR=$ZSH/cache
 ZSH_THEME=ys
 
-add_fpath $(brew --prefix)/share/zsh/site-functions
+add_fpath /opt/homebrew/share/zsh/site-functions
 
 
 plugins=(
