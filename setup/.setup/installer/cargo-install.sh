@@ -4,6 +4,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 BASE_RUST_PACAKGE_LIST=(
     sheldon
+    fnm
 )
 
 DEVELOP_RUST_PACAKGE_LIST=(

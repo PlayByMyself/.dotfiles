@@ -53,6 +53,7 @@ plugins=(
     z
     brew
     poetry
+    fnm
 )
 '''
 
