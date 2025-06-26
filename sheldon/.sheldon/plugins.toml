@@ -20,10 +20,6 @@ github = 'zsh-users/zsh-syntax-highlighting'
 [plugins.zsh-autosuggestions]
 github = 'zsh-users/zsh-autosuggestions'
 
-[plugins.zsh-vi-mode]
-github = 'jeffreytse/zsh-vi-mode'
-use = ['*.plugin.zsh']
-
 [plugins.fast-syntax-highlighting]
 github = 'zdharma-continuum/fast-syntax-highlighting'
 use = ['*.plugin.zsh']
