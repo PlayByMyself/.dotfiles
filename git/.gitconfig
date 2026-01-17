@@ -2,7 +2,7 @@
 	path = .gitconfig-github
 [includeIf "gitdir:~/github/"]
 	path = .gitconfig-github
-[includeIf "gitdir:~/company/"]
-	path = .gitconfig-company
+[includeIf "gitdir:~/company/xmly/"]
+	path = .gitconfig-xmly
 [core]
 	editor = vim
