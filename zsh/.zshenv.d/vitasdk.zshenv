@@ -1,1 +1,1 @@
-add_path /usr/local/vitasdk/bin && export VITASDK=/usr/local/vitasdk
+export_var_path_if_exists VITASDK "/usr/local/vitasdk"

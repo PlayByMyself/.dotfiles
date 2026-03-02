@@ -1,25 +1,10 @@
-add_path() {
-  local result=0;
-  for NEW_PATH in $@; do
-    if [[ -d "$NEW_PATH" ]] && [[ ":$PATH:" != *":$NEW_PATH:"* ]]; then
-      export PATH="$NEW_PATH:$PATH"
-    else
-      result=1
-    fi
-  done
-  return result
-}
+export_var_path_if_exists() {
+  local var_name="$1"
+  local path="$2"
 
-add_fpath() {
-  local result=0;
-  for NEW_FPATH in $@; do
-    if [[ -d "$NEW_FPATH" ]] && [[ ":$FPATH:" != *":$NEW_FPATH:"* ]]; then
-      export FPATH="$NEW_FPATH:$FPATH"
-    else
-      result=1
-    fi
-  done
-  return result
+  if [[ -d "$path" ]]; then
+    export "$var_name=$path"
+  fi
 }
 
 # source all .zshenv files in .zshenv.d directory

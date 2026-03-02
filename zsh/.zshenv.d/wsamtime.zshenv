@@ -1,1 +1,1 @@
-add_path $HOME/.wasmtime/bin && export WASMTIME_HOME=$HOME/.wasmtime
+export_var_path_if_exists WASMTIME_HOME "$HOME/.wasmtime"
