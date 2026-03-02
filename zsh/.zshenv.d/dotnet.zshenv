@@ -1,1 +1,1 @@
-export_var_path_if_exists DOTNET_ROOT "/opt/homebrew/opt/dotnet/libexec"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
