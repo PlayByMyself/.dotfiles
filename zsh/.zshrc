@@ -29,6 +29,8 @@ add_fpath() {
   return result
 }
 
+
+
 # source all .zshrc files in .zshrc.d directory
 setopt null_glob
 ZSH_RC_DIR="$HOME/.zshrc.d"
