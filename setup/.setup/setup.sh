@@ -12,6 +12,7 @@ readonly BASE_PACKAGE_LIST=(
     vim
     tmux
     gpg
+    pipx
 )
 
 readonly DEVELOP_PACKAGE_LIST=()

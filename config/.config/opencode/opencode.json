@@ -8,7 +8,7 @@
       "description": "git agent for codebase management",
       "mode": "subagent",
       "model": "ollama/qwen3:4b",
-      "prompt": "{file:./prompt/git-agent.md}",
+      "prompt": "{file:./prompt/git-agent.md}"
     }
   },
   "provider": {
