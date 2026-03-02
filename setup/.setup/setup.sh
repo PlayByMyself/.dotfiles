@@ -23,7 +23,7 @@ readonly SERVER_PACKAGE_LIST=(
 
 readonly EXTRA_INSTALLER_LIST=(
     cargo-install.sh
-    pip-install.sh
+    pipx-install.sh
 )
 
 # Define package manager settings
